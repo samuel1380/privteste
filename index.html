@@ -1102,14 +1102,16 @@
     }
 
     .post-locked-content .bg-media {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-         z-index: 1;
-     }
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 1;
+          transform: scale(2.5); /* Zoom exagerado para tirar o foco e gerar curiosidade */
+          transform-origin: center; /* Mantém o zoom no centro */
+      }
 
     .post-locked-content .lock-circle {
         position: relative;
