@@ -709,43 +709,61 @@
                 // O usuário só precisa colocar o arquivo com esse nome na pasta media
                 
                 function tryLoadMedia(name) {
-                    // Tenta vídeo primeiro
-                    for (let ext of videoExtensions) {
-                        const videoPath = mediaFolder + name + '.' + ext;
-                        const videoTest = document.createElement('video');
-                        videoTest.src = videoPath;
-                        
-                        videoTest.oncanplay = function() {
-                            const video = document.createElement('video');
-                            video.src = videoPath;
-                            video.className = 'bg-media';
-                            video.autoplay = true;
-                            video.muted = true;
-                            video.loop = true;
-                            video.setAttribute('playsinline', '');
-                            video.setAttribute('webkit-playsinline', '');
-                            video.setAttribute('muted', ''); // Reforça para o iOS
-                            container.prepend(video);
-                            video.play().catch(e => console.log("Autoplay bloqueado:", e));
-                        };
-                    }
+                     // Tenta vídeo primeiro
+                     for (let ext of videoExtensions) {
+                         const videoPath = mediaFolder + name + '.' + ext;
+                         
+                         const video = document.createElement('video');
+                         video.className = 'bg-media';
+                         video.style.display = 'none'; // Esconde até carregar
+                         video.muted = true;
+                         video.autoplay = true;
+                         video.loop = true;
+                         video.setAttribute('muted', '');
+                         video.setAttribute('playsinline', '');
+                         video.setAttribute('webkit-playsinline', '');
+                         video.setAttribute('preload', 'auto');
+                         
+                         const source = document.createElement('source');
+                         source.src = videoPath;
+                         source.type = `video/${ext === 'mp4' ? 'mp4' : ext}`;
+                         video.appendChild(source);
 
-                    // Tenta imagem
-                    for (let ext of imageExtensions) {
-                        const imgPath = mediaFolder + name + '.' + ext;
-                        const img = new Image();
-                        img.src = imgPath;
-                        img.onload = function() {
-                            // Se já tiver vídeo, não coloca imagem
-                            if (container.querySelector('video')) return;
-                            
-                            const bgImg = document.createElement('img');
-                            bgImg.src = imgPath;
-                            bgImg.className = 'bg-media';
-                            container.prepend(bgImg);
-                        };
-                    }
-                }
+                         video.oncanplay = function() {
+                             if (container.querySelector('.bg-media-loaded')) return;
+                             video.classList.add('bg-media-loaded');
+                             video.style.display = 'block';
+                             container.prepend(video);
+                             video.play().catch(err => {
+                                 console.log("Erro ao dar play no iOS:", err);
+                                 // Se falhar o play, tenta forçar no clique do body como última alternativa
+                                 document.body.addEventListener('touchstart', () => video.play(), {once: true});
+                             });
+                         };
+
+                         video.onerror = function() {
+                             video.remove();
+                         };
+                     }
+
+                     // Tenta imagem
+                     for (let ext of imageExtensions) {
+                         const imgPath = mediaFolder + name + '.' + ext;
+                         const img = new Image();
+                         img.src = imgPath;
+                         img.onload = function() {
+                             // Se já tiver vídeo carregado, não coloca imagem
+                             if (container.querySelector('video.bg-media-loaded')) return;
+                             
+                             if (!container.querySelector('img.bg-media')) {
+                                 const bgImg = document.createElement('img');
+                                 bgImg.src = imgPath;
+                                 bgImg.className = 'bg-media';
+                                 container.prepend(bgImg);
+                             }
+                         };
+                     }
+                 }
 
                 // Tenta carregar 'preview' ou 'post'
                 tryLoadMedia('preview');
