@@ -1,0 +1,6 @@
+services:
+  - type: static
+    name: privacy-clone
+    env: static
+    buildCommand: ""
+    publishPath: "."
