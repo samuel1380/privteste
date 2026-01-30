@@ -722,8 +722,11 @@
                             video.autoplay = true;
                             video.muted = true;
                             video.loop = true;
-                            video.playsInline = true;
+                            video.setAttribute('playsinline', '');
+                            video.setAttribute('webkit-playsinline', '');
+                            video.setAttribute('muted', ''); // Reforça para o iOS
                             container.prepend(video);
+                            video.play().catch(e => console.log("Autoplay bloqueado:", e));
                         };
                     }
 
