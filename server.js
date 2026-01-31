@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const PAGVIVA_CONFIG = {
     endpoint: 'https://pagviva.com/api/transaction/deposit',
     token: process.env.PAGVIVA_TOKEN || 'a9dc1703-e814-4fe2-b3f0-0e91258208cb',
-    apiKey: process.env.PAGVIVA_API_KEY || '697d6de0f0c33',
+    apiKey: process.env.PAGVIVA_API_KEY || '697e1ae08bc1b',
     secret: process.env.PAGVIVA_SECRET || 'f327e8a9-6766-4ec7-a3a1-10671db2ec68'
 };
 
@@ -39,6 +39,9 @@ app.post('/create-pix', async (req, res) => {
             });
         }
 
+        // Conforme documentação: "Bearer ".base64_encode($token.':'.$secret)
+        const authString = Buffer.from(`${token}:${secret}`).toString('base64');
+
         // O postback só funciona quando o site estiver online (Render)
         const isLocal = req.headers.host.includes('localhost') || req.headers.host.includes('127.0.0.1');
         const postbackUrl = isLocal ? 'https://google.com/callback-placeholder' : `https://${req.headers.host}/postback`;
@@ -53,17 +56,14 @@ app.post('/create-pix', async (req, res) => {
             "method_pay": "pix"
         };
 
-        console.log('Solicitando PIX à PagVIVA...', { amount });
+        console.log('Solicitando PIX à PagVIVA (Base64 Auth)...');
 
         const response = await axios.post(PAGVIVA_CONFIG.endpoint, payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${token}|${secret}`,
-                'x-api-key': apiKey,
-                'x-secret-key': secret,
-                'token': token,
-                'secret': secret
+                'Authorization': `Bearer ${authString}`,
+                'X-API-KEY': apiKey
             }
         });
 
@@ -100,7 +100,12 @@ app.post('/postback', (req, res) => {
     console.log(`Transação: ${idTransaction} | Status: ${status}`);
     
     // Armazena o status da transação
-    transactions[idTransaction] = status;
+    // Conforme documentação, status pode vir como 'paid'
+    if (status === 'paid' || status === '2' || status === 2) {
+        transactions[idTransaction] = 'paid';
+    } else {
+        transactions[idTransaction] = status;
+    }
 
     // Responder sempre com 200 para a PagVIVA não tentar reenviar
     res.status(200).send('OK');
@@ -114,7 +119,7 @@ app.get('/check-status/:id', (req, res) => {
     res.json({
         idTransaction: id,
         status: status,
-        approved: status == 2 || status == '2'
+        approved: status === 'paid' || status == 2 || status == '2'
     });
 });
 
