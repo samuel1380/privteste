@@ -28,6 +28,16 @@ const transactions = {};
 app.post('/create-pix', async (req, res) => {
     try {
         const { amount, debtor_name, email, debtor_document_number } = req.body;
+        const token = String(PAGVIVA_CONFIG.token || '').trim();
+        const apiKey = String(PAGVIVA_CONFIG.apiKey || '').trim();
+        const secret = String(PAGVIVA_CONFIG.secret || '').trim();
+
+        if (!token || !apiKey || !secret) {
+            return res.status(500).json({
+                error: true,
+                message: 'Chaves da PagVIVA ausentes no servidor'
+            });
+        }
 
         // O postback só funciona quando o site estiver online (Render)
         const isLocal = req.headers.host.includes('localhost') || req.headers.host.includes('127.0.0.1');
@@ -43,15 +53,17 @@ app.post('/create-pix', async (req, res) => {
             "method_pay": "pix"
         };
 
-        console.log('Solicitando PIX à PagVIVA...', payload);
+        console.log('Solicitando PIX à PagVIVA...', { amount });
 
         const response = await axios.post(PAGVIVA_CONFIG.endpoint, payload, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${PAGVIVA_CONFIG.token}`,
-                'x-api-key': PAGVIVA_CONFIG.apiKey,
-                'x-secret-key': PAGVIVA_CONFIG.secret
+                'Authorization': `Bearer ${token}|${secret}`,
+                'x-api-key': apiKey,
+                'x-secret-key': secret,
+                'token': token,
+                'secret': secret
             }
         });
 
@@ -114,4 +126,9 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
     console.log(`URL de Postback local: http://localhost:${PORT}/postback`);
+    console.log('PagVIVA env:', {
+        token: !!process.env.PAGVIVA_TOKEN,
+        apiKey: !!process.env.PAGVIVA_API_KEY,
+        secret: !!process.env.PAGVIVA_SECRET
+    });
 });
