@@ -50,8 +50,8 @@ app.post('/create-pix', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${PAGVIVA_CONFIG.token}`,
-                'X-API-KEY': PAGVIVA_CONFIG.apiKey,
-                'X-SECRET-KEY': PAGVIVA_CONFIG.secret // Adicionando a Secret caso a API exija
+                'x-api-key': PAGVIVA_CONFIG.apiKey,
+                'x-secret-key': PAGVIVA_CONFIG.secret
             }
         });
 
