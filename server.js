@@ -59,10 +59,22 @@ app.post('/create-pix', async (req, res) => {
         res.json(response.data);
 
     } catch (error) {
-        console.error('Erro ao chamar PagVIVA:', error.response ? error.response.data : error.message);
+        console.error('--- ERRO PAGVIVA DETALHADO ---');
+        if (error.response) {
+            console.error('Status:', error.response.status);
+            console.error('Dados da Resposta:', JSON.stringify(error.response.data, null, 2));
+            console.error('Headers da Resposta:', error.response.headers);
+        } else {
+            console.error('Mensagem de Erro:', error.message);
+        }
+        
+        const errorMsg = error.response && error.response.data ? 
+            (typeof error.response.data === 'string' ? error.response.data : JSON.stringify(error.response.data)) : 
+            error.message;
+
         res.status(500).json({
             error: true,
-            message: error.response ? (error.response.data.message || JSON.stringify(error.response.data)) : error.message
+            message: errorMsg
         });
     }
 });
